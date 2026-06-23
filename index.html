@@ -119,14 +119,14 @@
           // const text = await response.text();
           // console.log("Resposta do webhook:", response.status, text);
 
-          if (response.ok) {
-            status.textContent = "Enviado com sucesso!";
-            status.className = "success";
-            form.reset();
-          } else {
-            status.textContent = "Erro: " + response.status + " — " + text;
-            status.className = "error";
-          }
+          // if (response.ok) {
+          //   status.textContent = "Enviado com sucesso!";
+          //   status.className = "success";
+          //   form.reset();
+          // } else {
+          //   status.textContent = "Erro: " + response.status + " — " + text;
+          //   status.className = "error";
+          // }
         } catch (err) {
           console.error("Erro ao enviar:", err);
           status.textContent = "Erro de conexão: " + err.message;
