@@ -108,14 +108,16 @@
         console.log("Payload enviado:", payload);
 
         try {
-          const response = await fetch(MAKE_WEBHOOK_URL, {
+          // const response = await fetch(MAKE_WEBHOOK_URL, {
+          await fetch(MAKE_WEBHOOK_URL, {
             method: "POST",
+            mode: "no-cors",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
           });
 
-          const text = await response.text();
-          console.log("Resposta do webhook:", response.status, text);
+          // const text = await response.text();
+          // console.log("Resposta do webhook:", response.status, text);
 
           if (response.ok) {
             status.textContent = "Enviado com sucesso!";
