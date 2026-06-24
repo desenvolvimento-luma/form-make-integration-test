@@ -81,18 +81,15 @@
     <div id="status"></div>
 
     <script>
-      // =====================================================
-      // COLE AQUI A URL DO WEBHOOK DO MAKE
-      // =====================================================
       const MAKE_WEBHOOK_URL =
         "https://hook.us2.make.com/6gb848trd4e64mo9wy4omckqp27zq53g";
-      // =====================================================
 
       const form = document.getElementById("form");
       const status = document.getElementById("status");
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
+
         status.className = "";
         status.style.display = "none";
 
@@ -108,25 +105,19 @@
         console.log("Payload enviado:", payload);
 
         try {
-          // const response = await fetch(MAKE_WEBHOOK_URL, {
           await fetch(MAKE_WEBHOOK_URL, {
             method: "POST",
             mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "text/plain",
+            },
             body: JSON.stringify(payload),
           });
 
-          // const text = await response.text();
-          // console.log("Resposta do webhook:", response.status, text);
-
-          // if (response.ok) {
-          //   status.textContent = "Enviado com sucesso!";
-          //   status.className = "success";
-          //   form.reset();
-          // } else {
-          //   status.textContent = "Erro: " + response.status + " — " + text;
-          //   status.className = "error";
-          // }
+          status.textContent =
+            "Payload enviado. Confira no Make se o webhook recebeu.";
+          status.className = "success";
+          form.reset();
         } catch (err) {
           console.error("Erro ao enviar:", err);
           status.textContent = "Erro de conexão: " + err.message;
