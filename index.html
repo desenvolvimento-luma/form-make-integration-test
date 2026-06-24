@@ -105,13 +105,19 @@
         console.log("Payload enviado:", payload);
 
         try {
-          await fetch(MAKE_WEBHOOK_URL, {
+          const response = await fetch(MAKE_WEBHOOK_URL, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(payload),
           });
+
+          if (response.ok) {
+            const text = await response.text();
+
+            console.log("Resposta do webhook:", response.status, text);
+          }
 
           status.textContent =
             "Payload enviado. Confira no Make se o webhook recebeu.";
